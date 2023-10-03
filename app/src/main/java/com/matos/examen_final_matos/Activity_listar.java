@@ -85,7 +85,7 @@ public class Activity_listar extends AppCompatActivity {
                         "" + listaLugares.get(i).getLatitud(),
                         Toast.LENGTH_LONG);
 
-                //mostrarMensaje(listaLugares.get(i).getLatitud());
+                cambiarVentana(listaLugares.get(i));
             }
         });
     }
@@ -99,5 +99,13 @@ public class Activity_listar extends AppCompatActivity {
             startActivity(intent);
         });
         ventana.create().show();
+    }
+
+    private void cambiarVentana(Lugar lugar) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("pLatitud", lugar.getLatitud());
+        intent.putExtra("pLongitud", lugar.getLongitud());
+        intent.putExtra("pNombre", lugar.getNombreLugar());
+        startActivity(intent);
     }
 }
