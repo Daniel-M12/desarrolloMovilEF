@@ -38,8 +38,33 @@ public class MainActivity extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btnRegistrar);
 
         btnRegistrar.setOnClickListener(v -> {
-            registrar();
+            if (capturarDatos()){
+                registrar();
+            }
         });
+    }
+
+    private boolean capturarDatos() {
+        boolean valida = true;
+
+        String nombreLugar = txtNombreLugar.getText().toString();
+        String latitud = txtLatitud.getText().toString();
+        String longitud = txtLongitud.getText().toString();
+
+        if (nombreLugar.isEmpty()){
+            txtNombreLugar.setError("El nombre del lugar es obligatorio");
+            valida = false;
+        }
+        if (latitud.isEmpty()){
+            txtLatitud.setError("La latitud es obligatoria");
+            valida = false;
+        }
+        if (longitud.isEmpty()){
+            txtLongitud.setError("La Longitud es obligatoria");
+            valida = false;
+        }
+
+        return valida;
     }
 
     private void registrar() {
